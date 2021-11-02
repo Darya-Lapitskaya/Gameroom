@@ -66,7 +66,7 @@ let room;
     }
     while (isMenu) {
         const menu = await prompt('Please select the section: 1 - Kids    2- Toys    3 - Budget   0 - exit from menu ');
-        // const menu = await prompt('Please select option: \n1 - show list of toys \n2- show list of kids \n3 - Add new toy \n4 - Filter toys \n0 - exit from menu ');
+        // const menu = await prompt('Please select option: 1 - show list of toys 2- show list of kids 3 - Add new toy 4 - Filter toys 0 - exit from menu ');
         switch (menu) {
             case '1':
                 let isKidMenu = true;
@@ -83,12 +83,12 @@ let room;
                             let kidDateOfBirth = new Date(await prompt('Please enter the date of birth: (format: May 5, 1975):  '));
                             let newKid = new Kid(kidName, kidSurname, kidDateOfBirth); 0
                             room.addKid(newKid);
-                            let isAddParent = await prompt('\nWould you like to add Parents info?   1- Add 1 parent info   2 - Add 2 parents info    3- Not add parents info');
+                            let isAddParent = await prompt('Would you like to add Parents info?   1- Add 1 parent info   2 - Add 2 parents info    3- Not add parents info');
                             switch (isAddParent) {
                                 case '1':
-                                    let parentName = await prompt('\nPlease enter the name of Parent:  ');
-                                    let parentSurname = await prompt('\nPlease enter the name of Parent:  ');
-                                    let parentDateOfBirth = new Date(await prompt('\nPlease enter the date of birth of Parent: (format: May 5, 1975):  '));
+                                    let parentName = await prompt('Please enter the name of Parent:  ');
+                                    let parentSurname = await prompt('Please enter the name of Parent:  ');
+                                    let parentDateOfBirth = new Date(await prompt('Please enter the date of birth of Parent: (format: May 5, 1975):  '));
                                     newParent = new Parent(parentName, parentSurname, parentDateOfBirth);
                                     newKid.addParent(newParent);
                                     break;
