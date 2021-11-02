@@ -1,0 +1,78 @@
+{
+  "Toy": [
+    {
+      "price": "10",
+      "size": "large",
+      "ageCategory": "7",
+      "material": "wood",
+      "color": "green",
+      "manufacturer": "Barbie"
+    },
+    {
+      "price": "20",
+      "size": "small",
+      "ageCategory": "16",
+      "material": "metal",
+      "color": "yellow",
+      "manufacturer": "Nike"
+    },
+    {
+      "price": "30",
+      "size": "large",
+      "ageCategory": "3",
+      "material": "wood",
+      "color": "yellow",
+      "manufacturer": "Netflix"
+    },
+    {
+      "price": "40",
+      "size": "small",
+      "ageCategory": "7",
+      "material": "metal",
+      "color": "red",
+      "manufacturer": "Wiz"
+    }
+  ],
+  "Doll": [
+    {
+      "price": "50",
+      "size": "large",
+      "ageCategory": "7",
+      "material": "wood",
+      "color": "green",
+      "manufacturer": "Barbie",
+	  "type": "baby",
+      "isInteractive": true
+    },
+    {
+      "price": "60",
+      "size": "large",
+      "ageCategory": "7",
+      "material": "wood",
+      "color": "green",
+      "manufacturer": "Barbie",
+	  "type": "baby21",
+      "isInteractive": false
+    }
+  ],
+  "Car": [
+    {
+      "price": "70",
+      "size": "large",
+      "ageCategory": "7",
+      "material": "wood",
+      "color": "green",
+      "manufacturer": "Barbie",
+      "type": "car1"
+    },
+    {
+      "price": "80",
+      "size": "large",
+      "ageCategory": "7",
+      "material": "wood",
+      "color": "green",
+      "manufacturer": "Barbie",
+      "type": "car2"
+    }
+  ]
+}
