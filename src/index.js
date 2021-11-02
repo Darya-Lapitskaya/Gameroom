@@ -81,7 +81,7 @@ let room;
                             let kidName = await prompt('Please enter the name of Kid:  ');
                             let kidSurname = await prompt('Please enter the surname of Kid:  ');
                             let kidDateOfBirth = new Date(await prompt('Please enter the date of birth: (format: May 5, 1975):  '));
-                            let newKid = new Kid(kidName, kidSurname, kidDateOfBirth); 0
+                            let newKid = new Kid(kidName, kidSurname, kidDateOfBirth);
                             room.addKid(newKid);
                             let isAddParent = await prompt('Would you like to add Parents info?   1- Add 1 parent info   2 - Add 2 parents info    3- Not add parents info');
                             switch (isAddParent) {
