@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Darya-Lapitskaya/Gameroom/issues"
   },
-  "homepage": "https://github.com/Darya-Lapitskaya/Gameroom#readme"
+  "homepage": "https://github.com/Darya-Lapitskaya/Gameroom#readme",
+  "dependencies": {
+    "typescript": "^4.4.4"
+  }
 }
