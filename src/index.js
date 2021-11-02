@@ -39,7 +39,7 @@ let toys2 = [
     new Toy(1, 'small', '18+', 'metal', 'blue', 'new2'),
     new Toy(10, 'big', '10', 'wood', 'orange', 'new3'),
 ];
-let toyToBeAdded = new Toy(100, 'big', '10', 'wood', 'orange', 'new3');
+let toyToBeAdded = new Toy(20, 'big', '10', 'wood', 'orange', 'new3');
 let room;
 (async () => {
     let isStartMenu = true;
@@ -71,37 +71,39 @@ let room;
             case '1':
                 let isKidMenu = true;
                 while (isKidMenu) {
+
                     const kidMenu = await prompt('Please select the option:   1 - View list of Kids    2 - Add Kid    3 - Get info about Kid parent    4 - Add Parent info for Kid    0 - back ');
                     switch (kidMenu) {
                         case '1':
                             console.table(room.kidsPool);
                             break;
                         case '2':
-                            let kidName = await prompt('Please enter the name of Kid');
-                            let kidSurname = await prompt('Please enter the surname of Kid');
-                            let kidDateOfBirth = new Date(await prompt('Please enter the date of birth'));
+                            let kidName = await prompt('Please enter the name of Kid:  ');
+                            let kidSurname = await prompt('Please enter the surname of Kid:  ');
+                            let kidDateOfBirth = new Date(await prompt('Please enter the date of birth: (format: May 5, 1975):  '));
                             let newKid = new Kid(kidName, kidSurname, kidDateOfBirth); 0
                             room.addKid(newKid);
                             let isAddParent = await prompt('\nWould you like to add Parents info?   1- Add 1 parent info   2 - Add 2 parents info    3- Not add parents info');
                             switch (isAddParent) {
                                 case '1':
-                                    let parentName = await prompt('\nPlease enter the name of Parent');
-                                    let parentSurname = await prompt('\nPlease enter the name of Parent');
-                                    let parentDateOfBirth = new Date(await prompt('\nPlease enter the date of birth of Parent'));
+                                    let parentName = await prompt('\nPlease enter the name of Parent:  ');
+                                    let parentSurname = await prompt('\nPlease enter the name of Parent:  ');
+                                    let parentDateOfBirth = new Date(await prompt('\nPlease enter the date of birth of Parent: (format: May 5, 1975):  '));
                                     newParent = new Parent(parentName, parentSurname, parentDateOfBirth);
                                     newKid.addParent(newParent);
                                     break;
                                 case '2':
                                     for (let i = 0; i < 2; i++) {
-                                        let parentName = await prompt('Please enter the name of Parent');
-                                        let parentSurname = await prompt('Please enter the name of Parent');
-                                        let parentDateOfBirth = new Date(await prompt('Please enter the date of birth of Parent'));
+                                        let parentName = await prompt('Please enter the name of Parent:  ');
+                                        let parentSurname = await prompt('Please enter the name of Parent:  ');
+                                        let parentDateOfBirth = new Date(await prompt('Please enter the date of birth of Parent (format: May 5, 1975):  '));
                                         newParent = new Parent(parentName, parentSurname, parentDateOfBirth);
                                         newKid.addParent(newParent);
                                     }
                                     break;
                                 case '3':
                                     break;
+
                                 default:
                                     console.log('Cannot recognize your answer. Please try again.');
                                     break;
@@ -110,16 +112,18 @@ let room;
                             break;
 
                         case '3':
-                            console.table(kids);
-                            let kidID = await prompt('Please enter the id of Kid');
+                            let kidsActual = room.getKidsPool();
+                            console.table(kidsActual);
+                            let kidID = await prompt('Please enter the index of Kid:  ');
                             room.getKidParentsInfo(kidID);
                             break;
                         case '4':
-                            console.table(kids);
-                            let kidIDForParent = await prompt('Please enter the id of Kid');
-                            let parentName = await prompt('Please enter the name of Parent');
-                            let parentSurname = await prompt('Please enter the name of Parent');
-                            let parentDateOfBirth = await prompt('Please enter the date of birth of Parent');
+                            kidsActual = room.getKidsPool();
+                            console.table(kidsActual);
+                            let kidIDForParent = await prompt('Please enter the index of Kid:  ');
+                            let parentName = await prompt('Please enter the name of Parent:  ');
+                            let parentSurname = await prompt('Please enter the name of Parent:  ');
+                            let parentDateOfBirth = await prompt('Please enter the date of birth of Parent(format: May 5, 1975):  ');
                             newParent = new Parent(parentName, parentSurname, parentDateOfBirth);
                             room.getKidsPool()[kidIDForParent].addParent(newParent);
                             break;
@@ -131,53 +135,35 @@ let room;
                             break;
                     }
                 }
+                break;
             case '2':
                 let isToyMenu = true;
                 while (isToyMenu) {
                     const toyMenu = await prompt('Please select the option:    1 - View list of Toys    2 - Add Toy (oblect declared in index.js)    3 - Sort Toys by Price    4 - Filter Toys     0 - back ');
+                    let filtArr = room.getToysPool();
                     switch (toyMenu) {
                         case '1':
-                            console.table(toys);
+                            console.table(room.getToysPool());
                             break;
                         case '2':
                             room.addToy(toyToBeAdded);
                             break;
                         case '3':
-                            const sortOption = await prompt('Please enter "asc" or "desc" for sort toys by price');
+                            const sortOption = await prompt('Please enter "asc" or "desc" for sort toys by price:  ');
                             room.sortToysbyPrice(sortOption);
                             break;
                         case '4':
                             let isParamMenu = true;
                             let params = {};
-                            // add filtered arr???
+
                             while (isParamMenu) {
-                                const paramMenu = await prompt('Please enter the field name (one field) to be filtered. E.g. "price", "material", "color", etc.   0 - back');
+                                const paramMenu = await prompt('Please enter the field name (one field) to be filtered (note: filtering uses "AND"). E.g. "price", "material", "color", etc.   0 - back  ');
                                 if (paramMenu != "0") {
                                     const value = await prompt(' Please enter the value: ');
-
-                                    if (Object.entries(params).length < 1) {
-                                        params[paramMenu] = value;
-                                        let filtArr = room.filterToys(params);
-                                        console.log("The filter results:");
-                                        console.table(filtArr);
-                                    } else {
-                                        let isKeep = false;
-                                        if (isKeep) {
-                                            params[paramMenu] = value;
-                                            let filtArr = room.filterToys(params);
-                                            console.log("The filter results:");
-                                            console.table(filtArr);
-                                        } else {
-                                            params = {};
-                                            console.table(filtArr);
-                                        }
-
-                                    }
-                                    // params[paramMenu] = value;
-                                    // let filtArr = room.filterToys(params);
-                                    // console.log("The filter results:");
-                                    // console.table(filtArr);
-
+                                    params[paramMenu] = value;
+                                    filtArr = room.filterToys(params);
+                                    console.log("The filter results:");
+                                    console.table(filtArr);
 
                                 } else {
                                     isParamMenu = false;
@@ -193,11 +179,12 @@ let room;
                             break;
                     }
                 }
+                break;
             case '3':
                 const budgetMenu = await prompt('Please select the option:    1 - View current budget for gameroom    2 - Donate to the gameroom    0 - back ');
                 switch (budgetMenu) {
                     case '1':
-                        console.log(room.budget);
+                        console.log(`Current gameoom budget is: ${room.budget}`);
                         break;
                     case '2':
                         const donate = parseInt(await prompt('Please enter the amount of money for donatate: '));

@@ -59,6 +59,7 @@ class GameRoom {
         if (toy.price <= this.budget) {
             this.toysPool.push(toy);
             this.budget = this.budget - toy.price;
+            console.log('Successfully added Toy');
         } else {
             console.log('Budget is not enough');
         }
@@ -78,8 +79,9 @@ class GameRoom {
     }
 
     filterToys(cr) {
-        { 
-            return this.toysPool = this.toysPool.filter(function (item) {
+        {
+            let filteredArr = [];
+            return filteredArr = this.toysPool.filter(function (item) {
                 for (let key in cr) {
                     if (item[key] === undefined || item[key] != cr[key])
                         return false;
@@ -92,10 +94,10 @@ class GameRoom {
     sortToysbyPrice(order) {
         switch (order) {
             case 'asc':
-               console.table( this.toysPool.sort((a,b) => (a.price > b.price) ? 1 : ((b.price > a.price) ? -1 : 0)));
+                console.table(this.toysPool.sort((a, b) => (a.price > b.price) ? 1 : ((b.price > a.price) ? -1 : 0)));
                 break;
             case 'desc':
-                console.table( this.toysPool.sort((a,b) => (a.price < b.price) ? 1 : ((b.price < a.price) ? -1 : 0)));
+                console.table(this.toysPool.sort((a, b) => (a.price < b.price) ? 1 : ((b.price < a.price) ? -1 : 0)));
                 break;
             default:
                 console.log('No correct option is entered');
@@ -108,8 +110,8 @@ class GameRoom {
         this.kidsPool.push(kid);
     }
 
-    getKidParentsInfo(kid){
-        this.kidsPool[kid]. getParentsInfo();
+    getKidParentsInfo(kid) {
+        this.kidsPool[kid].getParentsInfo();
     }
 }
 
